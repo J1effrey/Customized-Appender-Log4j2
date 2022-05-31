@@ -17,18 +17,18 @@ public class StatisticsLoggerWrapper {
 
     public void debug(Object message)
     {
-        log.log(Level.DEBUG, message);
+        logger.log(Level.DEBUG, message);
     }
 
     public void debug(Object message, Throwable t)
     {
-        log.log(Level.DEBUG, message, t);
+        logger.log(Level.DEBUG, message, t);
     }
 
     public boolean isInfoEnabled()
     {
         Level p = Level.INFO;
-        if(!log.isEnabledFor(p))
+        if(!logger.isEnabledFor(p))
             return false;
         else
             return p.isGreaterOrEqual(log.getEffectiveLevel());
@@ -36,52 +36,52 @@ public class StatisticsLoggerWrapper {
 
     public void info(Object message)
     {
-        log.log(Level.INFO, message);
+        logger.log(Level.INFO, message);
     }
 
     public void info(Object message, Throwable t)
     {
-        log.log(Level.INFO, message, t);
+        logger.log(Level.INFO, message, t);
     }
 
     public void warn(Object message)
     {
-        log.log(Level.WARN, message);
+        logger.log(Level.WARN, message);
     }
 
     public void warn(Object message, Throwable t)
     {
-        log.log(Level.WARN, message, t);
+        logger.log(Level.WARN, message, t);
     }
 
     public void error(Object message)
     {
-        log.log(Level.ERROR, message);
+        logger.log(Level.ERROR, message);
     }
 
     public void error(Object message, Throwable t)
     {
-        log.log(Level.ERROR, message, t);
+        logger.log(Level.ERROR, message, t);
     }
 
     public void fatal(Object message)
     {
-        log.log(Level.FATAL, message);
+        logger.log(Level.FATAL, message);
     }
 
     public void fatal(Object message, Throwable t)
     {
-        log.log(Level.FATAL, message, t);
+        logger.log(Level.FATAL, message, t);
     }
 
     public void log(Level p, Object message)
     {
-        log.log(p, message);
+        logger.log(p, message);
     }
 
     public void log(Level p, Object message, Throwable t)
     {
-        log.log(p, message, t);
+        logger.log(p, message, t);
     }
 
     public static StatisticsLoggerWrapper getLogger(String name)
