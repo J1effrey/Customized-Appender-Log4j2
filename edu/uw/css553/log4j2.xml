@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="org.apache.logging.log4j.core,com.yyf.css553">
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <Statistics name="StatisticsMonitor" url="jdbc:mysql://localhost:3306/application_Logs" 
+                    driver="com.mysql.cj.jdbc.Driver" username="root" password="123456"/>
+    </appenders>
+    <loggers>
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="StatisticsMonitor"/>
+        </root>
+    </loggers>
+</Configuration>
