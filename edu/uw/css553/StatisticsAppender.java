@@ -31,6 +31,45 @@ public class StatisticsAppender extends AbstractAppender {
         this.username = username;
         this.password = password;
     }
+    
+    @Override
+    public void start() {
+        createNewTableForLogs();
+        super.start();
+    }
+
+    public void createNewTableForLogs() {
+        try {
+            Class.forName(this.driver);
+            conn = DriverManager.getConnection(url, username, password);
+            st = conn.createStatement();
+            String tableSql = "CREATE TABLE IF NOT EXISTS `log_records2`  (\n" +
+                    "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                    "  `message` varchar(255) DEFAULT NULL,\n" +
+                    "  `username` varchar(255) DEFAULT NULL,\n" +
+                    "  `timestamp` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,\n" +
+                    "  `level` varchar(255) DEFAULT NULL,\n" +
+                    "  PRIMARY KEY (`id`)\n" +
+                    ") ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;";
+//            st.executeUpdate("DROP TABLE IF EXISTS `log_records`;");
+            st.executeUpdate(tableSql);
+        } catch (ClassNotFoundException | SQLException e) {
+            LOGGER.error("Something went wrong when creating new table");
+        } finally {
+            try {
+                if (st != null) {
+                    st.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+                st = null;
+                conn = null;
+            } catch (SQLException e) {
+                LOGGER.error("Fail to close connection!");
+            }
+        }
+    }
 
 
     @Override
