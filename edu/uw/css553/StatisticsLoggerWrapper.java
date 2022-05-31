@@ -1,5 +1,5 @@
-import org.apache.log4j.Logger;
-import org.apache.log4j.Level;
+import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.core.Level;
 
 public class StatisticsLoggerWrapper {
     private final String LoggerName;
